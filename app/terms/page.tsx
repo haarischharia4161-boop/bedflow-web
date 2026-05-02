@@ -24,7 +24,7 @@ export default function TermsAndConditions() {
             <p>These Terms shall be governed and construed in accordance with the laws of India. Any legal disputes arising out of or related to these terms shall be subject to the exclusive jurisdiction of the courts located in Haryana, India.</p>
   
             <h2 className="text-xl font-semibold text-slate-800 mt-4">6. Contact Information</h2>
-            <p>For any queries regarding these Terms, please reach out to us at <strong>support@bedflow.in</strong>.</p>
+            <p>For any queries regarding these Terms, please reach out to us at <strong>bedflow.admin@gmial.com</strong>.</p>
           </div>
         </div>
       </main>

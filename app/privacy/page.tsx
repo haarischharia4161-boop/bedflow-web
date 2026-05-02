@@ -21,7 +21,7 @@ export default function PrivacyPolicy() {
             <p>We do not sell, trade, or rent your personal information to third parties. We implement industry-standard security measures to protect your data from unauthorized access, alteration, or disclosure.</p>
   
             <h2 className="text-xl font-semibold text-slate-800 mt-4">5. Contact Us</h2>
-            <p>If you have any questions or concerns regarding this Privacy Policy or your data, please contact us at <strong>support@bedflow.in</strong>.</p>
+            <p>If you have any questions or concerns regarding this Privacy Policy or your data, please contact us at <strong>bedflow.admin@gmail.com</strong>.</p>
           </div>
         </div>
       </main>

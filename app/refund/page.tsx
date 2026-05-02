@@ -18,7 +18,7 @@ export default function RefundPolicy() {
             <p>Exceptions to our no-refund policy may be made on a case-by-case basis at our sole discretion. This typically includes accidental duplicate billing or technical failures on our end that entirely prevented you from accessing the platform. Any approved refunds will be credited back to your original payment method within 5-7 business days.</p>
   
             <h2 className="text-xl font-semibold text-slate-800 mt-4">4. How to Request Help</h2>
-            <p>If you believe you have been billed in error or wish to discuss your account status, please contact our billing team immediately at <strong>support@bedflow.in</strong>. Please include your account details and the transaction reference number in your email.</p>
+            <p>If you believe you have been billed in error or wish to discuss your account status, please contact our billing team immediately at <strong>bedflow.admin@gmail.com</strong>. Please include your account details and the transaction reference number in your email.</p>
           </div>
         </div>
       </main>
