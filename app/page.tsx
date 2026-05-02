@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Home() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-center p-8 bg-slate-50 text-slate-900">
@@ -12,9 +14,9 @@ export default function Home() {
         </div>
 
         <div className="flex flex-wrap justify-center gap-6 text-sm text-slate-500 border-t pt-8">
-          <span className="hover:text-emerald-600 transition-colors cursor-pointer">Privacy Policy</span>
-          <span className="hover:text-emerald-600 transition-colors cursor-pointer">Terms &amp; Conditions</span>
-          <span className="hover:text-emerald-600 transition-colors cursor-pointer">Refund Policy</span>
+          <Link href="/privacy" className="hover:text-emerald-600 transition-colors">Privacy Policy</Link>
+          <Link href="/terms" className="hover:text-emerald-600 transition-colors">Terms &amp; Conditions</Link>
+          <Link href="/refund" className="hover:text-emerald-600 transition-colors">Refund Policy</Link>
         </div>
       </div>
     </main>
