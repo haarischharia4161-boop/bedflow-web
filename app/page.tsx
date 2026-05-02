@@ -7,8 +7,8 @@ export default function Home() {
         
         <div className="bg-white p-8 rounded-xl shadow-sm border border-slate-200 mb-16 text-left">
           <h2 className="font-semibold mb-4 text-lg border-b pb-2">Contact Support</h2>
-          <p className="mb-2"><strong>Email:</strong> support@bedflow.in</p>
-          <p><strong>Phone:</strong> +91 99999 99999</p>
+          <p className="mb-2"><strong>Email:</strong> bedflow.admin@gmail.com</p>
+          <p><strong>Phone:</strong> +91 84481 14161</p>
         </div>
 
         <div className="flex flex-wrap justify-center gap-6 text-sm text-slate-500 border-t pt-8">
