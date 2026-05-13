@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import type { Session } from "@supabase/supabase-js";
 import { BedflowLogo } from "@/components/BedflowLogo";
+import { createClient } from "@/lib/supabase/client";
 
 const MARKETING = [
   ["Features", "#features"],
@@ -12,61 +14,76 @@ const MARKETING = [
   ["Testimonials", "#testimonials"],
 ] as const;
 
-const bubbleIdle =
-  "glass-bubble glass-bubble--idle rounded-xl px-3 py-2 text-sm font-black tracking-tight text-slate-950 sm:px-4 sm:py-2.5 sm:text-base";
+const navBtn =
+  "btn-nav-3d px-3 py-2 text-sm sm:px-4 sm:py-2.5 sm:text-base";
 
-const bubbleActive =
-  "glass-bubble glass-bubble--active rounded-xl px-3 py-2 text-sm font-black tracking-tight text-slate-950 sm:px-4 sm:py-2.5 sm:text-base";
+const navBtnPrimary =
+  "btn-nav-3d btn-nav-3d-primary px-3 py-2 text-sm sm:px-4 sm:py-2.5 sm:text-base";
 
 export function SiteHeader() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [session, setSession] = useState<Session | null>(null);
   const onHome = pathname === "/";
 
   useEffect(() => {
     setMenuOpen(false);
   }, [pathname]);
 
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getSession().then(({ data: { session: s } }) => setSession(s));
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, s) => setSession(s));
+    return () => subscription.unsubscribe();
+  }, []);
+
   return (
     <header className="sticky top-0 z-[100] border-b border-white/40 bg-white/85 backdrop-blur-md">
-      <div className="mx-auto flex min-h-[60px] max-w-[1480px] flex-wrap items-center justify-between gap-3 px-4 py-2.5 sm:px-6 sm:py-3">
+      <div className="mx-auto flex min-h-[56px] max-w-[1480px] flex-wrap items-center justify-between gap-2 px-3 py-2 sm:min-h-[60px] sm:gap-3 sm:px-6 sm:py-3">
         <BedflowLogo size={44} />
 
-        <nav className="order-3 hidden w-full flex-wrap justify-center gap-1 lg:order-none lg:flex lg:w-auto lg:flex-1">
+        <nav className="order-3 hidden w-full flex-wrap justify-center gap-1.5 lg:order-none lg:flex lg:w-auto lg:flex-1">
           {onHome ? (
             <>
               {MARKETING.map(([label, hash]) => (
-                <a key={hash} href={hash} className={bubbleIdle}>
+                <a key={hash} href={hash} className={navBtn}>
                   {label}
                 </a>
               ))}
-              <Link href="/dashboard" className={bubbleIdle}>
-                Dashboard
-              </Link>
+              {session ? (
+                <Link href="/dashboard" className={navBtn}>
+                  Dashboard
+                </Link>
+              ) : null}
             </>
           ) : (
             <>
-              <Link href="/" className={bubbleIdle}>
+              <Link href="/" className={navBtn}>
                 Home
               </Link>
-              <Link href="/dashboard" className={bubbleIdle}>
-                Dashboard
-              </Link>
-              <Link href="/setting" className={bubbleIdle}>
-                Settings
-              </Link>
-              <Link href="/liquid-glass" className={bubbleIdle}>
-                Design lab
-              </Link>
+              {session ? (
+                <>
+                  <Link href="/dashboard" className={navBtn}>
+                    Dashboard
+                  </Link>
+                  <Link href="/setting" className={navBtn}>
+                    Settings
+                  </Link>
+                </>
+              ) : null}
             </>
           )}
         </nav>
 
         <div className="flex items-center gap-2">
-          <Link href="/login" className={`${bubbleIdle} hidden sm:inline-flex`}>
-            Sign in
-          </Link>
-          <Link href="/signup" className={bubbleActive}>
+          {!onHome && !session ? (
+            <Link href="/login" className={`${navBtn} hidden sm:inline-flex`}>
+              Sign in
+            </Link>
+          ) : null}
+          <Link href="/signup" className={navBtnPrimary}>
             Get started
           </Link>
           <button
@@ -100,66 +117,67 @@ export function SiteHeader() {
         </div>
 
         {menuOpen ? (
-          <div className="order-last flex w-full flex-col gap-2 border-t border-white/35 py-4 lg:hidden">
+          <div className="order-last flex w-full flex-col gap-2 border-t border-white/35 py-3 sm:py-4 lg:hidden">
             {onHome ? (
               <>
                 {MARKETING.map(([label, hash]) => (
                   <a
                     key={hash}
                     href={hash}
-                    className={bubbleIdle}
+                    className={navBtn}
                     onClick={() => setMenuOpen(false)}
                   >
                     {label}
                   </a>
                 ))}
-                <Link
-                  href="/dashboard"
-                  className={bubbleIdle}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Dashboard
-                </Link>
+                {session ? (
+                  <Link
+                    href="/dashboard"
+                    className={navBtn}
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    Dashboard
+                  </Link>
+                ) : null}
               </>
             ) : (
               <>
                 <Link
                   href="/"
-                  className={bubbleIdle}
+                  className={navBtn}
                   onClick={() => setMenuOpen(false)}
                 >
                   Home
                 </Link>
-                <Link
-                  href="/dashboard"
-                  className={bubbleIdle}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Dashboard
-                </Link>
-                <Link
-                  href="/setting"
-                  className={bubbleIdle}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Settings
-                </Link>
-                <Link
-                  href="/liquid-glass"
-                  className={bubbleIdle}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Design lab
-                </Link>
+                {session ? (
+                  <>
+                    <Link
+                      href="/dashboard"
+                      className={navBtn}
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      Dashboard
+                    </Link>
+                    <Link
+                      href="/setting"
+                      className={navBtn}
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      Settings
+                    </Link>
+                  </>
+                ) : null}
+                {!session ? (
+                  <Link
+                    href="/login"
+                    className={navBtn}
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    Sign in
+                  </Link>
+                ) : null}
               </>
             )}
-            <Link
-              href="/login"
-              className={bubbleIdle}
-              onClick={() => setMenuOpen(false)}
-            >
-              Sign in
-            </Link>
           </div>
         ) : null}
       </div>

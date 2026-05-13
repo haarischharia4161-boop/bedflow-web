@@ -22,7 +22,72 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+}
+
+/* Opaque 3D controls — dark labels, no translucent wash over text */
+.btn-nav-3d {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #0f172a;
+  text-decoration: none;
+  background: linear-gradient(180deg, #ffffff 0%, #e2e8f0 100%);
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  border-bottom: 3px solid rgba(15, 23, 42, 0.22);
+  border-radius: 0.75rem;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 2px 0 rgba(15, 23, 42, 0.06),
+    0 5px 10px rgba(15, 23, 42, 0.1);
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease,
+    border-bottom-width 0.12s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn-nav-3d:hover {
+  background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+  color: #020617;
+}
+
+.btn-nav-3d:active {
+  transform: translateY(2px);
+  border-bottom-width: 1px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    0 1px 0 rgba(15, 23, 42, 0.05),
+    0 2px 5px rgba(15, 23, 42, 0.08);
+}
+
+.btn-nav-3d-primary {
+  color: #f8fafc;
+  background: linear-gradient(180deg, #6366f1 0%, #4338ca 100%);
+  border: 1px solid rgba(49, 46, 129, 0.45);
+  border-bottom: 3px solid #312e81;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 2px 0 rgba(30, 27, 75, 0.4),
+    0 6px 16px rgba(67, 56, 202, 0.45);
+}
+
+.btn-nav-3d-primary:hover {
+  color: #ffffff;
+  background: linear-gradient(180deg, #4f46e5 0%, #3730a3 100%);
+}
+
+.btn-nav-3d-primary:active {
+  transform: translateY(2px);
+  border-bottom-width: 1px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 1px 0 rgba(30, 27, 75, 0.35),
+    0 3px 10px rgba(49, 46, 129, 0.4);
 }
 
 /* Clear bubble glass: ~no blur, high saturation (lens / “n” feel), low milky fill */

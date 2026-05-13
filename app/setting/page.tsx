@@ -23,7 +23,7 @@ function Toggle({ checked, onChange }: { checked: boolean; onChange: () => void 
       className="relative flex h-[28px] w-[50px] flex-shrink-0 cursor-pointer items-center rounded-full transition-all"
       style={{
         background: checked
-          ? "linear-gradient(145deg, #6366f1, #8b5cf6)"
+          ? "linear-gradient(145deg, #6366f4 #8b5cf6)"
           : "rgba(0,0,0,0.10)",
         boxShadow: checked
           ? "0 2px 8px rgba(99,102,241,0.35), inset 0 1px 0 rgba(255,255,255,0.20)"
@@ -75,8 +75,7 @@ export default function SettingsPage() {
   ];
 
   return (
-    <div className="min-h-screen px-5 py-8 sm:px-8 lg:px-14"
-      style={{ fontFamily: "-apple-system,'SF Pro Display','SF Pro Text',BlinkMacSystemFont,system-ui,sans-serif" }}>
+    <div className="min-h-screen px-4 py-6 sm:px-8 sm:py-8 lg:px-14">
 
       {/* Header */}
       <header className="mb-8 flex flex-wrap items-center justify-between gap-4">
@@ -91,7 +90,7 @@ export default function SettingsPage() {
           </div>
           <Link
             href="/dashboard"
-            className="glass-bubble glass-bubble--idle rounded-xl px-4 py-2 text-sm font-black text-slate-950 sm:inline-flex"
+            className="btn-nav-3d px-4 py-2 text-sm font-bold sm:inline-flex"
           >
             ← Dashboard
           </Link>

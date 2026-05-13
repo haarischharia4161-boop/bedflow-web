@@ -50,8 +50,7 @@ export default function Dashboard() {
   const [monthIdx, setMonthIdx] = useState(2);
 
   return (
-    <div className="min-h-screen px-5 py-8 sm:px-8 lg:px-14"
-      style={{ fontFamily: "-apple-system,'SF Pro Display','SF Pro Text',BlinkMacSystemFont,system-ui,sans-serif" }}>
+    <div className="min-h-screen px-4 py-6 sm:px-8 sm:py-8 lg:px-14">
 
       {/* ── TOP NAV ──────────────────────────────────────────────────────── */}
       <header className="mb-10 flex flex-wrap items-center justify-between gap-4">

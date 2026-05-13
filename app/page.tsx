@@ -23,18 +23,22 @@ const G = {
     borderRadius: "9999px",
   },
   btn: {
-    background: "rgba(255,255,255,0.62)",
-    backdropFilter: "blur(20px)",
-    WebkitBackdropFilter: "blur(20px)",
-    border: "1px solid rgba(255,255,255,0.85)",
-    boxShadow: "0 2px 8px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.95)",
+    color: "#0f172a",
+    background: "linear-gradient(180deg, #ffffff 0%, #e2e8f0 100%)",
+    border: "1px solid rgba(15,23,42,0.12)",
+    borderBottom: "3px solid rgba(15,23,42,0.2)",
     borderRadius: "14px",
+    boxShadow:
+      "inset 0 1px 0 rgba(255,255,255,0.95), 0 2px 0 rgba(15,23,42,0.06), 0 5px 12px rgba(15,23,42,0.1)",
   },
   primary: {
-    background: "linear-gradient(145deg, #6366f1 0%, #7c3aed 100%)",
-    boxShadow: "0 4px 20px rgba(99,102,241,0.38), inset 0 1px 0 rgba(255,255,255,0.22)",
+    color: "#f8fafc",
+    background: "linear-gradient(180deg, #6366f1 0%, #4338ca 100%)",
+    border: "1px solid rgba(49,46,129,0.45)",
+    borderBottom: "3px solid #312e81",
     borderRadius: "14px",
-    border: "1px solid rgba(99,102,241,0.50)",
+    boxShadow:
+      "inset 0 1px 0 rgba(255,255,255,0.28), 0 2px 0 rgba(30,27,75,0.4), 0 6px 18px rgba(67,56,202,0.45)",
   },
 };
 
@@ -69,7 +73,7 @@ const CSS = `
 // ─── Sub-components ───────────────────────────────────────────────────────────
 function Badge({ children, color = "#6366f1" }: { children: React.ReactNode; color?: string }) {
   return (
-    <span className="inline-flex items-center gap-1.5 rounded-full px-5 py-2 text-base font-semibold shadow-sm"
+    <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold shadow-sm sm:px-5 sm:py-2 sm:text-base"
       style={{ background: `${color}14`, border: `1px solid ${color}28`, color }}>
       {children}
     </span>
@@ -88,11 +92,11 @@ function GlossHighlight({ position = "tl" }: { position?: "tl"|"tr"|"bl"|"br" })
 
 function StatBadge({ label, value, sub, delay = "" }: { label:string; value:string; sub:string; delay?:string }) {
   return (
-    <div className={`anim-slide-up ${delay} hover-lift flex flex-col gap-1.5 rounded-[28px] px-8 py-6`}
+    <div className={`anim-slide-up ${delay} hover-lift flex flex-col gap-1 rounded-[20px] px-4 py-4 sm:gap-1.5 sm:rounded-[28px] sm:px-8 sm:py-6`}
       style={G.card}>
-      <p className="text-base font-semibold tracking-[0.14em] text-slate-400 uppercase">{label}</p>
-      <p className="text-5xl font-bold tracking-tight text-slate-900">{value}</p>
-      <p className="text-base text-slate-500">{sub}</p>
+      <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-400 sm:text-base sm:tracking-[0.14em]">{label}</p>
+      <p className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">{value}</p>
+      <p className="text-xs text-slate-500 sm:text-base">{sub}</p>
     </div>
   );
 }
@@ -100,9 +104,9 @@ function StatBadge({ label, value, sub, delay = "" }: { label:string; value:stri
 // ─── Hero floating dashboard preview ─────────────────────────────────────────
 function DashboardPreview() {
   return (
-    <div className="relative w-full max-w-[640px] mx-auto select-none">
+    <div className="relative mx-auto w-full max-w-[min(100%,380px)] select-none sm:max-w-[520px] lg:max-w-[640px]">
       {/* Main card */}
-      <div className="anim-float-a relative rounded-[40px] p-8 overflow-hidden"
+      <div className="anim-float-a relative overflow-hidden rounded-[24px] p-4 sm:rounded-[40px] sm:p-8"
         style={{
           background: "rgba(255,255,255,0.48)",
           backdropFilter: "blur(48px) saturate(200%)",
@@ -114,20 +118,20 @@ function DashboardPreview() {
         <GlossHighlight position="tl" />
 
         {/* Header row */}
-        <div className="flex items-center justify-between mb-6">
+        <div className="mb-4 flex items-center justify-between sm:mb-6">
           <div>
-            <p className="text-sm font-semibold tracking-[0.18em] text-slate-400 uppercase mb-2">Total Revenue</p>
-            <p className="text-5xl font-bold text-slate-900 tracking-tight">₹1,42,340</p>
+            <p className="mb-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-400 sm:mb-2 sm:text-sm sm:tracking-[0.18em]">Total Revenue</p>
+            <p className="text-3xl font-bold tracking-tight text-slate-900 sm:text-5xl">₹1,42,340</p>
           </div>
-          <div className="flex items-center gap-2 rounded-full px-4 py-2"
+          <div className="flex items-center gap-1.5 rounded-full px-2.5 py-1.5 sm:gap-2 sm:px-4 sm:py-2"
             style={{ background:"rgba(16,185,129,0.10)", border:"1px solid rgba(16,185,129,0.22)" }}>
             <span className="h-2.5 w-2.5 rounded-full anim-pulse" style={{background:"#10b981"}} />
-            <span className="text-base font-semibold text-emerald-700">+8.4%</span>
+            <span className="text-xs font-semibold text-emerald-700 sm:text-base">+8.4%</span>
           </div>
         </div>
 
         {/* Mini sparkline */}
-        <svg viewBox="0 0 300 60" className="w-full mb-8" style={{height:70}}>
+        <svg viewBox="0 0 300 60" className="mb-6 w-full sm:mb-8" style={{ height: 56 }}>
           <defs>
             <linearGradient id="hg" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="#6366f1" stopOpacity="0.22" />
@@ -146,24 +150,24 @@ function DashboardPreview() {
           { name:"Priya Mehta",  room:"2A", amt:"₹9,500",  status:"paid" },
           { name:"Arjun Singh",  room:"6C", amt:"₹11,000", status:"overdue" },
         ].map((t, i) => (
-          <div key={i} className="flex items-center gap-5 rounded-[20px] px-5 py-4 mb-3"
+          <div key={i} className="mb-2 flex items-center gap-3 rounded-2xl px-3 py-3 last:mb-0 sm:mb-3 sm:gap-5 sm:rounded-[20px] sm:px-5 sm:py-4"
             style={{ background:"rgba(255,255,255,0.45)", border:"1px solid rgba(255,255,255,0.65)" }}>
-            <div className="h-12 w-12 rounded-full flex items-center justify-center text-lg font-bold text-white flex-shrink-0"
+            <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full text-base font-bold text-white sm:h-12 sm:w-12 sm:text-lg"
               style={{background:"linear-gradient(145deg,#6366f1,#a78bfa)"}}>
               {t.name[0]}
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-lg font-semibold text-slate-800 truncate">{t.name}</p>
-              <p className="text-sm text-slate-500 mt-1">Room {t.room}</p>
+              <p className="truncate text-sm font-semibold text-slate-800 sm:text-lg">{t.name}</p>
+              <p className="mt-0.5 text-xs text-slate-500 sm:mt-1 sm:text-sm">Room {t.room}</p>
             </div>
-            <span className="text-lg font-bold" style={{color: t.status==="paid"?"#059669":"#d97706"}}>{t.amt}</span>
+            <span className="text-sm font-bold sm:text-lg" style={{color: t.status==="paid"?"#059669":"#d97706"}}>{t.amt}</span>
           </div>
         ))}
       </div>
 
       {/* Floating badge — top right */}
-      <div className="anim-float-b absolute -right-12 -top-8 rounded-[24px] px-6 py-5 shadow-2xl"
-        style={{...G.card, minWidth:180}}>
+      <div className="anim-float-b absolute -right-2 -top-4 rounded-[18px] px-4 py-3 shadow-xl sm:-right-12 sm:-top-8 sm:rounded-[24px] sm:px-6 sm:py-5 sm:shadow-2xl"
+        style={{...G.card, minWidth: 140}}>
         <GlossHighlight position="tl" />
         <p className="text-sm text-slate-500 font-medium mb-1">Occupancy</p>
         <p className="text-3xl font-bold text-slate-900">92%</p>
@@ -173,8 +177,8 @@ function DashboardPreview() {
       </div>
 
       {/* Floating badge — bottom left */}
-      <div className="anim-float-c absolute -left-16 bottom-20 rounded-[24px] px-6 py-5 shadow-2xl"
-        style={{...G.card, minWidth:190}}>
+      <div className="anim-float-c absolute -left-3 bottom-14 rounded-[18px] px-4 py-3 shadow-xl sm:-left-16 sm:bottom-20 sm:rounded-[24px] sm:px-6 sm:py-5 sm:shadow-2xl"
+        style={{...G.card, minWidth: 150}}>
         <GlossHighlight position="tr" />
         <div className="flex items-center gap-2 mb-2">
           <span className="h-2.5 w-2.5 rounded-full anim-pulse" style={{background:"#10b981"}} />
@@ -185,7 +189,7 @@ function DashboardPreview() {
       </div>
 
       {/* Floating badge — bottom right */}
-      <div className="anim-float-b absolute -right-10 bottom-8 rounded-2xl px-5 py-4 shadow-xl"
+      <div className="anim-float-b absolute -right-1 bottom-4 rounded-xl px-3 py-2 shadow-lg sm:-right-10 sm:bottom-8 sm:rounded-2xl sm:px-5 sm:py-4 sm:shadow-xl"
         style={{...G.card, animationDelay:"2s"}}>
         <p className="text-sm text-slate-500 mb-1">Pending Dues</p>
         <p className="text-xl font-bold text-amber-600">₹3,132</p>
@@ -334,21 +338,21 @@ export default function HomePage() {
   ];
 
   return (
-    <div style={{ fontFamily: "-apple-system,'SF Pro Display','SF Pro Text',BlinkMacSystemFont,system-ui,sans-serif" }}>
+    <div>
       <style>{CSS}</style>
 
       {/* ── HERO ────────────────────────────────────────────────────────────── */}
-      <section className="relative flex min-h-screen items-center px-6 pb-24 pt-16 sm:px-10 sm:pt-20 lg:px-12 lg:pt-24">
-        <div className="mx-auto grid w-full max-w-[1440px] grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20">
+      <section className="relative flex min-h-[min(100dvh,880px)] items-center overflow-x-hidden px-4 pb-16 pt-12 sm:px-6 sm:pb-24 sm:pt-16 lg:px-12 lg:pt-24">
+        <div className="mx-auto grid w-full max-w-[1440px] grid-cols-1 items-center gap-8 sm:gap-12 lg:grid-cols-2 lg:gap-20">
 
           {/* Left copy */}
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-5 sm:gap-8">
             <div className="anim-slide-up">
               <Badge color="#6366f1">✦ Now with AI-powered rent insights</Badge>
             </div>
-            <h1 className="anim-slide-up delay-1 text-6xl font-bold tracking-[-0.03em] text-slate-900 leading-[1.05] sm:text-7xl lg:text-[88px]">
+            <h1 className="anim-slide-up delay-1 text-4xl font-bold leading-[1.08] tracking-[-0.03em] text-slate-900 sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5rem]">
               Property management,{" "}
-              <span className="relative inline-block mt-3">
+              <span className="relative mt-1 inline-block sm:mt-3">
                 <span style={{
                   background: "linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%)",
                   WebkitBackgroundClip: "text",
@@ -359,19 +363,19 @@ export default function HomePage() {
                 </span>
               </span>
             </h1>
-            <p className="anim-slide-up delay-2 text-xl lg:text-2xl text-slate-500 leading-relaxed max-w-[600px]">
+            <p className="anim-slide-up delay-2 max-w-[600px] text-base leading-relaxed text-slate-600 sm:text-lg lg:text-2xl">
               Bedflow is the all-in-one platform that helps landlords and PG owners collect rent, manage tenants, and grow their portfolio — without the chaos.
             </p>
 
             {/* CTAs */}
-            <div className="anim-slide-up delay-3 flex flex-wrap items-center gap-5 mt-2">
+            <div className="anim-slide-up delay-3 mt-1 flex flex-col gap-3 sm:mt-2 sm:flex-row sm:flex-wrap sm:items-center sm:gap-5">
               <Link href="/signup"
-                className="flex items-center gap-3 px-9 py-4.5 text-lg font-semibold text-white transition-all hover:scale-105 active:scale-[0.97]"
+                className="flex w-full items-center justify-center gap-2 px-7 py-3.5 text-center text-base font-semibold transition-[transform,box-shadow] active:translate-y-0.5 sm:w-auto sm:px-9 sm:py-4 sm:text-lg"
                 style={G.primary}>
-                Start for free — no card needed
+                Get started
               </Link>
               <a href="#how-it-works"
-                className="flex items-center gap-2 px-8 py-4.5 text-lg font-semibold text-slate-700 transition-all hover:scale-105 active:scale-[0.97]"
+                className="flex w-full items-center justify-center gap-2 px-7 py-3.5 text-center text-base font-semibold text-slate-900 transition-[transform,box-shadow] active:translate-y-0.5 sm:w-auto sm:px-8 sm:py-4 sm:text-lg"
                 style={G.btn}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <circle cx="12" cy="12" r="10"/><polygon points="10,8 16,12 10,16"/>
@@ -381,8 +385,8 @@ export default function HomePage() {
             </div>
 
             {/* Social proof avatars */}
-            <div className="anim-slide-up delay-4 flex items-center gap-4 mt-4">
-              <div className="flex -space-x-3">
+            <div className="anim-slide-up delay-4 mt-2 flex flex-col gap-3 sm:mt-4 sm:flex-row sm:items-center">
+              <div className="flex -space-x-3 justify-center sm:justify-start">
                 {["linear-gradient(135deg,#6366f1,#a78bfa)","linear-gradient(135deg,#ec4899,#f9a8d4)","linear-gradient(135deg,#10b981,#6ee7b7)","linear-gradient(135deg,#f59e0b,#fcd34d)"].map((g,i) => (
                   <div key={i} className="h-12 w-12 rounded-full border-[3px] border-white flex items-center justify-center text-sm font-bold text-white shadow-sm"
                     style={{background:g, zIndex: 4-i}}>
@@ -390,11 +394,11 @@ export default function HomePage() {
                   </div>
                 ))}
               </div>
-              <div>
-                <div className="flex items-center gap-1">
-                  {[1,2,3,4,5].map(s => <span key={s} className="text-amber-400 text-lg">★</span>)}
+              <div className="text-center sm:text-left">
+                <div className="flex items-center justify-center gap-1 sm:justify-start">
+                  {[1,2,3,4,5].map(s => <span key={s} className="text-lg text-amber-400 sm:text-lg">★</span>)}
                 </div>
-                <p className="text-base text-slate-500 mt-1">Loved by <strong className="text-slate-700">1,200+ landlords</strong> across India</p>
+                <p className="mt-1 text-sm text-slate-600 sm:text-base">Loved by <strong className="text-slate-800">1,200+ landlords</strong> across India</p>
               </div>
             </div>
           </div>
@@ -410,9 +414,9 @@ export default function HomePage() {
       {/* ── TICKER BAR ──────────────────────────────────────────────────────── */}
       <div className="overflow-hidden py-8 border-y border-black/[0.05]"
         style={{ background:"rgba(255,255,255,0.30)", backdropFilter:"blur(20px)", WebkitBackdropFilter:"blur(20px)" }}>
-        <div className="flex anim-ticker whitespace-nowrap gap-0">
+        <div className="flex anim-ticker gap-0 whitespace-nowrap">
           {[...tickerItems, ...tickerItems].map((item, i) => (
-            <span key={i} className="inline-flex items-center gap-2 px-12 text-xl font-medium text-slate-500">
+            <span key={i} className="inline-flex items-center gap-2 px-6 text-base font-medium text-slate-600 sm:px-12 sm:text-xl">
               {item}
               <span className="text-slate-300 mx-4">·</span>
             </span>
@@ -421,8 +425,8 @@ export default function HomePage() {
       </div>
 
       {/* ── STATS ROW ───────────────────────────────────────────────────────── */}
-      <section className="px-6 py-24 sm:px-10 lg:px-12">
-        <div className="mx-auto max-w-[1440px] grid grid-cols-2 gap-8 sm:grid-cols-4">
+      <section className="px-4 py-16 sm:px-10 sm:py-24 lg:px-12">
+        <div className="mx-auto grid max-w-[1440px] grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-8">
           <StatBadge label="Collected" value="₹48 Cr" sub="across all landlords" delay="delay-1" />
           <StatBadge label="Landlords" value="1,200+" sub="active this month"    delay="delay-2" />
           <StatBadge label="Uptime"    value="99.9%"  sub="guaranteed SLA"       delay="delay-3" />
@@ -431,18 +435,18 @@ export default function HomePage() {
       </section>
 
       {/* ── FEATURES ────────────────────────────────────────────────────────── */}
-      <section id="features" className="px-6 py-24 sm:px-10 lg:px-12">
+      <section id="features" className="px-4 py-16 sm:px-10 sm:py-24 lg:px-12">
         <div className="mx-auto max-w-[1440px]">
           {/* Section header */}
-          <div className="mb-20 text-center flex flex-col items-center gap-5">
+          <div className="mb-12 flex flex-col items-center gap-4 text-center sm:mb-20 sm:gap-5">
             <Badge color="#6366f1">Everything you need</Badge>
-            <h2 className="text-6xl font-bold tracking-[-0.025em] text-slate-900">Built for serious landlords</h2>
-            <p className="text-2xl text-slate-500 max-w-3xl mt-2">Every feature is designed to eliminate the manual, tedious work of property management.</p>
+            <h2 className="text-3xl font-bold tracking-[-0.02em] text-slate-900 sm:text-4xl md:text-5xl lg:text-6xl">Built for serious landlords</h2>
+            <p className="mt-1 max-w-3xl text-base text-slate-600 sm:text-xl lg:text-2xl">Every feature is designed to eliminate the manual, tedious work of property management.</p>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3">
             {features.map((f, i) => (
-              <div key={i} className="hover-lift relative overflow-hidden p-10" style={G.card}>
+              <div key={i} className="hover-lift relative overflow-hidden p-6 sm:p-10" style={G.card}>
                 <GlossHighlight position={i % 2 === 0 ? "tl" : "tr"} />
                 <div className="relative flex flex-col gap-6">
                   <div className="flex h-16 w-16 items-center justify-center rounded-[20px]"
@@ -450,8 +454,8 @@ export default function HomePage() {
                     {f.icon}
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-slate-900">{f.title}</h3>
-                    <p className="mt-3 text-lg text-slate-500 leading-relaxed">{f.desc}</p>
+                    <h3 className="text-xl font-bold text-slate-900 sm:text-2xl">{f.title}</h3>
+                    <p className="mt-2 text-base leading-relaxed text-slate-600 sm:mt-3 sm:text-lg">{f.desc}</p>
                   </div>
                 </div>
               </div>
@@ -461,20 +465,20 @@ export default function HomePage() {
       </section>
 
       {/* ── HOW IT WORKS ────────────────────────────────────────────────────── */}
-      <section id="how-it-works" className="px-6 py-24 sm:px-10 lg:px-12">
+      <section id="how-it-works" className="px-4 py-16 sm:px-10 sm:py-24 lg:px-12">
         <div className="mx-auto max-w-[1440px]">
-          <div className="mb-20 text-center flex flex-col items-center gap-5">
+          <div className="mb-12 flex flex-col items-center gap-4 text-center sm:mb-20 sm:gap-5">
             <Badge color="#10b981">Simple as 1-2-3</Badge>
-            <h2 className="text-6xl font-bold tracking-[-0.025em] text-slate-900">Up and running in minutes</h2>
+            <h2 className="text-3xl font-bold tracking-[-0.02em] text-slate-900 sm:text-4xl md:text-5xl lg:text-6xl">Up and running in minutes</h2>
           </div>
 
-          <div className="relative flex flex-col gap-8 lg:flex-row lg:gap-10">
+          <div className="relative flex flex-col gap-5 sm:gap-8 lg:flex-row lg:gap-10">
             {/* Connecting line on desktop */}
             <div className="hidden lg:block absolute top-[72px] left-[calc(16.66%+12px)] right-[calc(16.66%+12px)] h-px"
               style={{ background: "linear-gradient(90deg, transparent, rgba(99,102,241,0.25), rgba(99,102,241,0.25), transparent)" }} />
 
             {steps.map((s, i) => (
-              <div key={i} className="hover-lift relative flex-1 overflow-hidden p-10 text-center" style={G.card}>
+              <div key={i} className="hover-lift relative flex-1 overflow-hidden p-6 text-center sm:p-10" style={G.card}>
                 <GlossHighlight position="tl" />
                 <div className="relative flex flex-col items-center gap-6">
                   <div className="relative flex h-20 w-20 items-center justify-center rounded-[24px] text-4xl"
@@ -488,8 +492,8 @@ export default function HomePage() {
                   </div>
                   <div>
                     <p className="text-base font-bold tracking-[0.18em] text-indigo-400 uppercase mb-3">{s.n}</p>
-                    <h3 className="text-2xl font-bold text-slate-900">{s.title}</h3>
-                    <p className="mt-3 text-lg text-slate-500 leading-relaxed">{s.desc}</p>
+                    <h3 className="text-lg font-bold text-slate-900 sm:text-2xl">{s.title}</h3>
+                    <p className="mt-2 text-base leading-relaxed text-slate-600 sm:mt-3 sm:text-lg">{s.desc}</p>
                   </div>
                 </div>
               </div>
@@ -499,16 +503,16 @@ export default function HomePage() {
       </section>
 
       {/* ── TESTIMONIALS ────────────────────────────────────────────────────── */}
-      <section id="testimonials" className="px-6 py-24 sm:px-10 lg:px-12">
+      <section id="testimonials" className="px-4 py-16 sm:px-10 sm:py-24 lg:px-12">
         <div className="mx-auto max-w-[1440px]">
-          <div className="mb-20 text-center flex flex-col items-center gap-5">
+          <div className="mb-12 flex flex-col items-center gap-4 text-center sm:mb-20 sm:gap-5">
             <Badge color="#ec4899">Real stories</Badge>
-            <h2 className="text-6xl font-bold tracking-[-0.025em] text-slate-900">Landlords love Bedflow</h2>
+            <h2 className="text-3xl font-bold tracking-[-0.02em] text-slate-900 sm:text-4xl md:text-5xl lg:text-6xl">Landlords love Bedflow</h2>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-3 sm:gap-8">
             {testimonials.map((t, i) => (
-              <div key={i} className="hover-lift relative overflow-hidden p-10 flex flex-col gap-6" style={G.card}>
+              <div key={i} className="hover-lift relative flex flex-col gap-4 overflow-hidden p-6 sm:gap-6 sm:p-10" style={G.card}>
                 <GlossHighlight position={i % 2 === 0 ? "tl" : "tr"} />
                 <div className="relative">
                   {/* Stars */}
@@ -517,7 +521,7 @@ export default function HomePage() {
                       <span key={s} className="text-amber-400 text-xl">★</span>
                     ))}
                   </div>
-                  <p className="text-xl text-slate-600 leading-relaxed italic">"{t.text}"</p>
+                  <p className="text-base italic leading-relaxed text-slate-700 sm:text-xl">&quot;{t.text}&quot;</p>
                   {/* Author */}
                   <div className="mt-8 flex items-center gap-5">
                     <div className="h-14 w-14 rounded-full flex items-center justify-center text-xl font-bold text-white flex-shrink-0 shadow-sm"
@@ -537,15 +541,15 @@ export default function HomePage() {
       </section>
 
       {/* ── PRICING ─────────────────────────────────────────────────────────── */}
-      <section id="pricing" className="px-6 py-24 sm:px-10 lg:px-12">
+      <section id="pricing" className="px-4 py-16 sm:px-10 sm:py-24 lg:px-12">
         <div className="mx-auto max-w-[1440px]">
-          <div className="mb-20 text-center flex flex-col items-center gap-5">
+          <div className="mb-12 flex flex-col items-center gap-4 text-center sm:mb-20 sm:gap-5">
             <Badge color="#8b5cf6">Transparent pricing</Badge>
-            <h2 className="text-6xl font-bold tracking-[-0.025em] text-slate-900">Start free, scale when ready</h2>
-            <p className="text-2xl text-slate-500 mt-2">No hidden fees. Cancel anytime.</p>
+            <h2 className="text-3xl font-bold tracking-[-0.02em] text-slate-900 sm:text-4xl md:text-5xl lg:text-6xl">Start free, scale when ready</h2>
+            <p className="mt-1 text-base text-slate-600 sm:text-xl lg:text-2xl">No hidden fees. Cancel anytime.</p>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-3 sm:gap-8">
             {plans.map((p, i) => (
               <div key={i} className="hover-lift relative overflow-hidden flex flex-col"
                 style={p.highlight ? {
@@ -567,26 +571,26 @@ export default function HomePage() {
 
                 <GlossHighlight position="tl" />
 
-                <div className="relative flex flex-col flex-1 gap-8 p-10">
+                <div className="relative flex flex-1 flex-col gap-6 p-6 sm:gap-8 sm:p-10">
                   <div>
-                    <h3 className="text-2xl font-bold text-slate-900">{p.name}</h3>
-                    <div className="mt-4 flex items-end gap-2">
-                      <span className="text-6xl font-bold tracking-tight text-slate-900">{p.price}</span>
-                      <span className="text-lg text-slate-500 mb-1.5">/{p.period}</span>
+                    <h3 className="text-xl font-bold text-slate-900 sm:text-2xl">{p.name}</h3>
+                    <div className="mt-3 flex items-end gap-2 sm:mt-4">
+                      <span className="text-4xl font-bold tracking-tight text-slate-900 sm:text-6xl">{p.price}</span>
+                      <span className="mb-0.5 text-sm text-slate-600 sm:text-lg">/{p.period}</span>
                     </div>
-                    <p className="mt-4 text-base text-slate-500 leading-relaxed">{p.desc}</p>
+                    <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:mt-4 sm:text-base">{p.desc}</p>
                   </div>
 
-                  <div className="flex-1 flex flex-col gap-4">
+                  <div className="flex flex-1 flex-col gap-3 sm:gap-4">
                     {p.features.map((feat, fi) => (
-                      <div key={fi} className="flex items-center gap-4">
+                      <div key={fi} className="flex items-center gap-3 sm:gap-4">
                         <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full"
                           style={{ background: p.highlight ? "rgba(99,102,241,0.12)" : "rgba(16,185,129,0.12)" }}>
                           <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                             <path d="M2 6l3 3 5-5" stroke={p.highlight ? "#6366f1" : "#10b981"} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                           </svg>
                         </div>
-                        <span className="text-lg text-slate-600">{feat}</span>
+                        <span className="text-base text-slate-700 sm:text-lg">{feat}</span>
                       </div>
                     ))}
                   </div>
@@ -594,10 +598,9 @@ export default function HomePage() {
                   {p.name === "Enterprise" ? (
                     <a
                       href="mailto:bedflow.admin@gmail.com?subject=Bedflow%20Enterprise%20inquiry"
-                      className="mt-6 flex items-center justify-center py-4.5 text-lg font-semibold transition-all hover:scale-[1.02] active:scale-[0.98]"
+                      className="mt-4 flex items-center justify-center rounded-2xl py-3.5 text-base font-semibold text-slate-900 transition-[transform,box-shadow] active:translate-y-0.5 sm:mt-6 sm:py-4.5 sm:text-lg"
                       style={{
                         ...G.btn,
-                        color: "#111827",
                         borderRadius: "16px",
                       }}
                     >
@@ -606,17 +609,16 @@ export default function HomePage() {
                   ) : (
                     <Link
                       href="/signup"
-                      className="mt-6 flex items-center justify-center py-4.5 text-lg font-semibold transition-all hover:scale-[1.02] active:scale-[0.98]"
+                      className="mt-4 flex items-center justify-center rounded-2xl py-3.5 text-base font-semibold transition-[transform,box-shadow] active:translate-y-0.5 sm:mt-6 sm:py-4.5 sm:text-lg"
                       style={
                         p.highlight
                           ? {
                               ...G.primary,
-                              color: "white",
                               borderRadius: "16px",
                             }
                           : {
                               ...G.btn,
-                              color: "#374151",
+                              borderRadius: "16px",
                             }
                       }
                     >
@@ -631,9 +633,9 @@ export default function HomePage() {
       </section>
 
       {/* ── FINAL CTA BANNER ────────────────────────────────────────────────── */}
-      <section className="px-6 py-24 sm:px-10 lg:px-12">
+      <section className="px-4 py-16 sm:px-10 sm:py-24 lg:px-12">
         <div className="mx-auto max-w-[1440px]">
-          <div className="relative overflow-hidden rounded-[40px] p-20 text-center"
+          <div className="relative overflow-hidden rounded-3xl p-8 text-center sm:rounded-[40px] sm:p-16 lg:p-20"
             style={{
               background: "rgba(238,242,255,0.60)",
               backdropFilter: "blur(48px) saturate(200%)",
@@ -648,36 +650,31 @@ export default function HomePage() {
             <div className="pointer-events-none absolute -bottom-20 -right-20 h-96 w-96 rounded-full"
               style={{ background:"radial-gradient(ellipse, rgba(139,92,246,0.18) 0%, transparent 70%)", filter:"blur(50px)" }} />
 
-            <div className="relative flex flex-col items-center gap-10">
+            <div className="relative flex flex-col items-center gap-6 sm:gap-10">
               <div className="flex justify-center">
-                <BedflowLogo showWordmark={false} size={88} />
+                <BedflowLogo showWordmark={false} size={80} />
               </div>
               <div>
-                <h2 className="text-6xl font-bold tracking-[-0.025em] text-slate-900 leading-tight">Ready to run your properties smarter?</h2>
-                <p className="mt-6 text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-                  Join 1,200+ landlords already using Bedflow. Setup takes less than 2 minutes — and it's free forever to start.
+                <h2 className="text-3xl font-bold leading-tight tracking-[-0.02em] text-slate-900 sm:text-4xl md:text-5xl lg:text-6xl">Ready to run your properties smarter?</h2>
+                <p className="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-slate-600 sm:mt-6 sm:text-xl lg:text-2xl">
+                  Join 1,200+ landlords already using Bedflow. Setup takes less than 2 minutes — and it&apos;s free forever to start.
                 </p>
               </div>
-              <div className="flex flex-wrap items-center justify-center gap-5 mt-4">
+              <div className="mt-2 flex w-full flex-col items-stretch justify-center sm:mt-4 sm:w-auto sm:flex-row sm:items-center">
                 <Link href="/signup"
-                  className="px-10 py-5 text-xl font-semibold text-white transition-all hover:scale-105 active:scale-[0.97]"
+                  className="flex items-center justify-center px-8 py-3.5 text-base font-semibold transition-[transform,box-shadow] active:translate-y-0.5 sm:px-10 sm:py-5 sm:text-xl"
                   style={{ ...G.primary, borderRadius: "18px" }}>
-                  Create your free account →
-                </Link>
-                <Link href="/login"
-                  className="px-9 py-5 text-xl font-semibold text-slate-700 transition-all hover:scale-105"
-                  style={{ ...G.btn, borderRadius: "18px" }}>
-                  Sign in
+                  Get started
                 </Link>
               </div>
-              <p className="text-base text-slate-500 mt-2">No credit card required · Cancel anytime · 14-day Pro trial included</p>
+              <p className="mt-1 text-sm text-slate-500 sm:mt-2 sm:text-base">No credit card required · Cancel anytime · 14-day Pro trial included</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* ── FOOTER ─────────────────────────────────────────────────────────── */}
-      <footer className="px-6 py-20 sm:px-10 lg:px-12 border-t border-black/[0.05]"
+      <footer className="border-t border-black/[0.05] px-4 py-12 sm:px-10 sm:py-20 lg:px-12"
         style={{ background:"rgba(255,255,255,0.28)", backdropFilter:"blur(20px)", WebkitBackdropFilter:"blur(20px)" }}>
         <div className="mx-auto max-w-[1440px]">
           <div className="flex flex-col gap-12">
@@ -714,7 +711,7 @@ export default function HomePage() {
                   href={i === 0 ? "https://twitter.com" : "https://www.linkedin.com"}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-12 w-12 items-center justify-center rounded-xl text-slate-700 transition-all hover:scale-110 hover:text-slate-950"
+                  className="flex h-12 w-12 items-center justify-center rounded-xl text-slate-900 transition-all hover:scale-110 hover:text-slate-950"
                   style={G.btn}
                 >
                   {s.icon}

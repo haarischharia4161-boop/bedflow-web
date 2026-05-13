@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased text-slate-950" style={{ fontFamily: "-apple-system, 'SF Pro Display', 'SF Pro Text', BlinkMacSystemFont, system-ui, sans-serif" }}>
+      <body className="antialiased font-sans text-slate-950">
 
         {/* Dynamic solid background */}
         <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-[#dce9ff]">

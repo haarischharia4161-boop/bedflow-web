@@ -50,8 +50,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center px-6 py-12"
-      style={{ fontFamily: "-apple-system,'SF Pro Display','SF Pro Text',BlinkMacSystemFont,system-ui,sans-serif" }}>
+    <div className="flex min-h-screen items-center justify-center px-4 py-10 sm:px-6 sm:py-12">
 
       <div className="w-full max-w-md">
         {/* Logo */}
@@ -87,8 +86,7 @@ export default function LoginPage() {
           <button 
             onClick={handleGoogleLogin}
             disabled={isLoading}
-            className="flex w-full items-center justify-center gap-3 rounded-[16px] bg-white px-4 py-4 text-base font-semibold text-slate-700 transition-all hover:bg-slate-50 hover:shadow-sm active:scale-[0.98] disabled:opacity-70"
-            style={{ border: "1px solid rgba(0,0,0,0.08)" }}>
+            className="flex w-full items-center justify-center gap-3 rounded-[16px] border border-slate-200/80 bg-white px-4 py-4 text-base font-semibold text-slate-900 shadow-[inset_0_1px_0_rgba(255,255,255,0.95),0_2px_0_rgba(15,23,42,0.06),0_4px_12px_rgba(15,23,42,0.08)] transition-all active:translate-y-0.5 disabled:opacity-70">
             <svg width="20" height="20" viewBox="0 0 24 24">
               <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
               <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
@@ -127,13 +125,7 @@ export default function LoginPage() {
             <button 
               type="submit" 
               disabled={isLoading || !email}
-              className="mt-2 flex w-full items-center justify-center py-4 text-base font-semibold text-white transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70"
-              style={{
-                background: "linear-gradient(145deg, #6366f1 0%, #7c3aed 100%)",
-                boxShadow: "0 4px 16px rgba(99,102,241,0.35), inset 0 1px 0 rgba(255,255,255,0.22)",
-                borderRadius: "16px",
-                border: "1px solid rgba(99,102,241,0.50)",
-              }}>
+              className="btn-nav-3d btn-nav-3d-primary mt-2 flex w-full items-center justify-center rounded-2xl py-4 text-base font-semibold disabled:opacity-70">
               {isLoading ? "Sending secure link..." : "Continue with Email →"}
             </button>
           </form>
