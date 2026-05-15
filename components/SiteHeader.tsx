@@ -25,6 +25,7 @@ export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [session, setSession] = useState<Session | null>(null);
   const onHome = pathname === "/";
+  const inDashboard = pathname.startsWith("/dashboard");
 
   useEffect(() => {
     setMenuOpen(false);
@@ -38,6 +39,10 @@ export function SiteHeader() {
     } = supabase.auth.onAuthStateChange((_event, s) => setSession(s));
     return () => subscription.unsubscribe();
   }, []);
+
+  if (inDashboard) {
+    return null;
+  }
 
   return (
     <header className="sticky top-0 z-[100] border-b border-white/40 bg-white/85 backdrop-blur-md">

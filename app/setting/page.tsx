@@ -117,20 +117,20 @@ export default function SettingsPage() {
       <div className="flex flex-col gap-6 lg:flex-row lg:gap-8">
 
         {/* Sidebar tabs */}
-        <aside className="lg:w-56 flex-shrink-0">
-          <nav className="flex flex-col gap-1 p-2" style={{...glass.card, padding: "8px"}}>
+        <aside className="flex-shrink-0 lg:w-56">
+          <nav className="card-3d-clear flex flex-col gap-1 border border-white/55 p-2 ring-1 ring-slate-200/60">
             {tabs.map((tab) => (
-              <button key={tab.id} onClick={() => setActiveTab(tab.id)}
-                className="flex items-center gap-3 rounded-[14px] px-3 py-2.5 text-left transition-all"
-                style={activeTab === tab.id ? {
-                  background: "rgba(99,102,241,0.10)",
-                  border: "1px solid rgba(99,102,241,0.22)",
-                  boxShadow: "0 1px 4px rgba(99,102,241,0.10)",
-                } : {
-                  border: "1px solid transparent",
-                }}>
-                <span className="text-base">{tab.icon}</span>
-                <span className="text-sm font-medium" style={{ color: activeTab === tab.id ? "#4f46e5" : "#475569" }}>
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() => setActiveTab(tab.id)}
+                data-active={activeTab === tab.id}
+                className="sidebar-link-3d w-full text-left"
+              >
+                <span className="text-base" aria-hidden>
+                  {tab.icon}
+                </span>
+                <span className="text-sm font-semibold text-inherit">
                   {tab.label}
                 </span>
               </button>
